@@ -1,0 +1,72 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E292EEF9-6805-4B42-87D5-4DA51FEE0D16" name="PARTIDO">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>EB77928C-41DA-98F7-21D1-C9975977F46B</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idpartido" id="64F49347-3020-05F9-4462-6DEB58C4863B">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>A090309B-7453-3EFC-A909-5BAAF1C38586</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="FAC5A351-5091-C3B5-F11F-D6EF59BD9C8C">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>130AD51F-363C-2297-7A4D-23F79CD1FB72</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="siglas" id="5631164C-71E0-9B0C-590E-46F075F8E09F">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>AFDA903E-C1FA-5365-F9E3-DFDE8CE3DDAC</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fundacion" id="E274A751-C974-2EC9-370C-A09859E888C4">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>71812BB3-A241-65BD-1D06-6504D9952483</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D6D2E57A-CAD9-6300-F13F-68FFD9537B10" name="PARTIDO_PK">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>8AF521E7-CE05-E0F9-2DEF-72104DCFAF43</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="64F49347-3020-05F9-4462-6DEB58C4863B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

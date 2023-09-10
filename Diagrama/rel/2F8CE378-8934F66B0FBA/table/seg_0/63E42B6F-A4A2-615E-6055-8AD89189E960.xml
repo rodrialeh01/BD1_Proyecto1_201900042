@@ -1,0 +1,102 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="63E42B6F-A4A2-615E-6055-8AD89189E960" name="VOTO">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>4CB3E956-4C30-CE47-C521-9D7AC00E3275</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idvoto" id="19B23F64-1C16-9896-C286-6AA31DABBCCB">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>85A18CFA-B032-68F1-CEDC-C4D6A1F2AD1D</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CIUDADANO_dpi" id="2410FD6B-3E3B-4379-9874-2630D5E0CD3B">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>4C9E1196-A00B-23CD-6873-7DCA1A4F9BBE</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>13</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CF228CD7-852B-E3C7-40A1-398F3EE0A564" referredColumn="20CE8DF1-1335-1CF7-C8FD-17FD685813E8"/>
+</associations>
+</Column>
+<Column name="MESA_idmesa" id="9D49138D-D11A-7EAB-10E6-6A4C2C83C7FB">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>E537E844-F972-1CE2-EAB2-A8A670EEAA1F</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="54B81156-DB6A-1B84-D913-6C7596309293" referredColumn="C46E92D7-3684-EDE4-5087-047C057DD8AF"/>
+</associations>
+</Column>
+<Column name="fechahora" id="03F0069D-6945-C7C4-7AFF-0F5D411F8C60">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>019E6DC0-27F5-1F1A-EFA4-67844B9F3272</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7FF9D0AE-60A9-E450-FBC1-5B052D25B657" name="VOTO_PK">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>9438A413-7CDE-4A16-C373-3A7C2D0C6F72</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="19B23F64-1C16-9896-C286-6AA31DABBCCB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E535E4BC-539A-7C82-22B7-1976F18C7F1A" name="VOTO_CIUDADANO_FK">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>CBE40311-564F-1329-5E58-29F7760AFA3A</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2410FD6B-3E3B-4379-9874-2630D5E0CD3B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A4B25F54-81FA-52B5-0F22-01B86E8EE354" name="VOTO_MESA_FK">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>5B688791-4B4E-F53E-DD67-4C180653EEFD</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9D49138D-D11A-7EAB-10E6-6A4C2C83C7FB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

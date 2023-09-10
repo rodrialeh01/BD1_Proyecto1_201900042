@@ -1,0 +1,123 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4C2E6BA5-79FD-CA54-F3A4-CBC27172DC5A" name="CIUDADANO">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 11:16:42 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="dpi" id="B676514A-E59D-79E9-A3A1-5289AA00F414">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 11:20:25 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>13</dataTypeSize>
+<ownDataTypeParameters>13,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nombre" id="ED673CE5-F5A9-D68C-A283-6F461643C5C9">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 11:21:04 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="apellido" id="90B494AA-BB59-EEE1-14CA-628588B2BAC1">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 11:21:40 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="direccion" id="70645CDF-ED5A-A60C-93E8-8ACCE373E8B8">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 11:22:04 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="telefono" id="A36F7EA0-C17D-D6C8-D694-A9BFBA1E1D8F">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 11:22:30 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="edad" id="0445C8E8-22B1-D52D-E32B-C29708256019">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 11:22:53 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="genero" id="1E8FF939-E1D9-E4E3-12C3-14D326460B84">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 11:23:10 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="C9E200B4-2FBA-CF4A-C534-C6927CF2A58E" name="CIUDADANO PK">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 11:21:01 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>B676514A-E59D-79E9-A3A1-5289AA00F414</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

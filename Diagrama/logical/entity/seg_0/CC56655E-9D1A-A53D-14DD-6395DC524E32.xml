@@ -1,0 +1,98 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="CC56655E-9D1A-A53D-14DD-6395DC524E32" name="CANDIDATO">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 11:17:21 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="idcandidato" id="702A123D-F262-34C2-DC75-98FB2F24A1CF">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 11:31:05 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nombres" id="9766CCC1-FB82-FC71-F003-FCEB7579508D">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 11:31:19 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>75</dataTypeSize>
+<ownDataTypeParameters>75,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="fecha_nacimiento" id="573F9937-FCF7-7D66-EDA3-2F3ABB2400DF">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 11:32:26 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="idpartido" id="69902DAD-0DA8-436D-F08B-22A90D0349F6">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:11:57 UTC</createdTime>
+<generatorID>C5D2CA43-A35B-8671-6EB7-A31D85B2D36B</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<referedAttribute>A090309B-7453-3EFC-A909-5BAAF1C38586</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="idcargo" id="A719D4DC-24E1-5049-C07C-BA36D6EEF8AF">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:16:21 UTC</createdTime>
+<generatorID>BDA39ADF-DA11-3A4C-A701-550E466C42B8</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<referedAttribute>021A2FE6-487B-757E-DE50-9892D2EF23AB</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="5153B7EF-5AAD-DAE7-B4EE-10BED8A3220B" name="CANDIDATO PK">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 11:31:09 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>702A123D-F262-34C2-DC75-98FB2F24A1CF</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

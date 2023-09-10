@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="74783045-D24C-22FC-C7AD-DA70A6A9B174" name="MESA">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 11:16:58 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="idmesa" id="8CB43905-09A6-E63B-8B1E-E4E81CD700B2">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:03:12 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="iddepartamento" id="AA53DF4C-EE58-F259-7321-A9436F7FD03D">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:04:51 UTC</createdTime>
+<generatorID>C3CB8F67-4A88-625D-EC23-5790FFE57FC0</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<referedAttribute>0A763FA2-C41F-B3D8-2A68-9B32D973487A</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="D3C81A6B-4962-D03B-6DCA-79F63829C85A" name="MESA PK">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:03:25 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>8CB43905-09A6-E63B-8B1E-E4E81CD700B2</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

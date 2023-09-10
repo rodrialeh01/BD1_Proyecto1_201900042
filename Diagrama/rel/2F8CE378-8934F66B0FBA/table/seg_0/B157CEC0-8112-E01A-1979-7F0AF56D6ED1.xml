@@ -1,0 +1,63 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B157CEC0-8112-E01A-1979-7F0AF56D6ED1" name="MESA">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>74783045-D24C-22FC-C7AD-DA70A6A9B174</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idmesa" id="C46E92D7-3684-EDE4-5087-047C057DD8AF">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>8CB43905-09A6-E63B-8B1E-E4E81CD700B2</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEPARTAMENTO_iddepartamento" id="0B33462A-1CDF-23BA-C7DC-F719CDC8A558">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>AA53DF4C-EE58-F259-7321-A9436F7FD03D</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CA897DDA-C773-ACC6-2A9E-30D6751B5F7A" referredColumn="8078432D-6121-2319-364D-56287B27EBE8"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="01C756B5-F2C8-2C6C-8A64-CEA357B16BB1" name="MESA_PK">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>D3C81A6B-4962-D03B-6DCA-79F63829C85A</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C46E92D7-3684-EDE4-5087-047C057DD8AF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2EDF5AA8-4DCE-AA76-2FF1-AAAF72AA10EB" name="MESA_DEPARTAMENTO_FK">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>C3CB8F67-4A88-625D-EC23-5790FFE57FC0</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0B33462A-1CDF-23BA-C7DC-F719CDC8A558"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

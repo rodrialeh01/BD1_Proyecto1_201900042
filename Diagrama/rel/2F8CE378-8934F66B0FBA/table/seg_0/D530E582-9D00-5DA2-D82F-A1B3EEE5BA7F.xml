@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D530E582-9D00-5DA2-D82F-A1B3EEE5BA7F" name="CANDIDATO">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>CC56655E-9D1A-A53D-14DD-6395DC524E32</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idcandidato" id="F46921C9-D126-BF11-46AE-7A61B046522D">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>702A123D-F262-34C2-DC75-98FB2F24A1CF</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombres" id="19DA8075-E5E1-E9A0-1530-91008A4ECC95">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>9766CCC1-FB82-FC71-F003-FCEB7579508D</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>75</dataTypeSize>
+<ownDataTypeParameters>75,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha_nacimiento" id="370DCE7C-275C-AFBF-F5FD-86109E87B2BA">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>573F9937-FCF7-7D66-EDA3-2F3ABB2400DF</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PARTIDO_idpartido" id="AD67B833-7CA1-B9EE-25DC-CD191732BCDA">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>69902DAD-0DA8-436D-F08B-22A90D0349F6</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3D8B7C63-A648-423F-5EBC-F64D9086BE6E" referredColumn="64F49347-3020-05F9-4462-6DEB58C4863B"/>
+</associations>
+</Column>
+<Column name="CARGO_idcargo" id="DDFCC8F0-A440-A5E2-D9FC-C3D8BEA926C8">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>A719D4DC-24E1-5049-C07C-BA36D6EEF8AF</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9725721A-0854-086C-6A41-D1B952405CA2" referredColumn="5E3F6A4D-27F4-CAC6-3FD5-D2C18A5C5D6F"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7DCC5492-364A-2212-958A-DD7930887912" name="CANDIDATO_PK">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>5153B7EF-5AAD-DAE7-B4EE-10BED8A3220B</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F46921C9-D126-BF11-46AE-7A61B046522D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AA301E0E-2904-64F1-DEB7-9289FBA319E4" name="CANDIDATO_PARTIDO_FK">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>C5D2CA43-A35B-8671-6EB7-A31D85B2D36B</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AD67B833-7CA1-B9EE-25DC-CD191732BCDA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F99C28C1-F29A-DFA5-1580-FF12B3E7AF26" name="CANDIDATO_CARGO_FK">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>BDA39ADF-DA11-3A4C-A701-550E466C42B8</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DDFCC8F0-A440-A5E2-D9FC-C3D8BEA926C8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

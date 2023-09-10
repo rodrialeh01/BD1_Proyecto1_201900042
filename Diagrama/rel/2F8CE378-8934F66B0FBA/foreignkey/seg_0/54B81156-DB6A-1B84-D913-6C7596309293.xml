@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="54B81156-DB6A-1B84-D913-6C7596309293" containerWithKeyObject="63E42B6F-A4A2-615E-6055-8AD89189E960" localFKIndex="A4B25F54-81FA-52B5-0F22-01B86E8EE354" name="VOTO_MESA_FK">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-10 12:18:34 UTC</createdTime>
+<generatorID>5B688791-4B4E-F53E-DD67-4C180653EEFD</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<referredTableLongName>MESA</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>B157CEC0-8112-E01A-1979-7F0AF56D6ED1</referredTableID>
+<keyObject>01C756B5-F2C8-2C6C-8A64-CEA357B16BB1</keyObject>
+<referredKeyID>01C756B5-F2C8-2C6C-8A64-CEA357B16BB1</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>idmesa</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
