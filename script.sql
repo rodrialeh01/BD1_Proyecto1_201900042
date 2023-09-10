@@ -24,7 +24,7 @@ CREATE TEMPORARY TABLE temp_ciudadano (
     direccion VARCHAR(100),
     telefono VARCHAR(10),
     edad INT,
-    genero CHAR(1)
+    genero VARCHAR(1)
 );
 
 -- CREA LA TABLA TEMPORAL DE PARTIDO
@@ -38,7 +38,7 @@ CREATE TEMPORARY TABLE temp_partido (
 -- CREA LA TABLA TEMPORAL DEL CANDIDATO
 CREATE TEMPORARY TABLE temp_candidato (
     id INT,
-    nombres VARCHAR(100),
+    nombres VARCHAR(75),
     fecha_nacimiento DATE,
     partido_id INT,
     cargo_id INT
