@@ -31,7 +31,7 @@ CREATE TEMPORARY TABLE temp_ciudadano (
 CREATE TEMPORARY TABLE temp_partido (
     id INT,
     nombre_partido VARCHAR(50),
-    siglas VARCHAR(10),
+    siglas VARCHAR(20),
     fundacion DATE
 );
 

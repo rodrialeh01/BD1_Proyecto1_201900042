@@ -1,8 +1,7 @@
+import fs from 'fs';
 import { db } from '../db.js';
-import { script_create_temptables } from './scripts_db.js';
-const fdidr = '../../TSEdatasets'
-const fs = require('fs')
-const csv = require('fast-csv');
+import { script_create_temptables } from '../scripts/scripts_bd.js';
+const fdidr = '../TSEdatasets'
 
 export const getInicio = (req, res) => {
     res.send({
@@ -14,9 +13,11 @@ export const cargarbtemp = async (req, res) => {
 
     //Elimina comentarios del script
     let script = script_create_temptables.replace(/--.*\n/g, '')
-    salida = []
+    let salida = []
 
     try{
+
+        const connection = await db.getConnection();
         //A. Crea las tablas temporales
         //Ejecuta el script1 sin comentarios
         const sqlCommands1 = script.split(";").map(command => command.trim());
@@ -25,11 +26,11 @@ export const cargarbtemp = async (req, res) => {
             if(sqlCommands1[i].length === 0){
                 continue;
             }
-
-            await db.query(sqlCommands1[i])
+            console.log(sqlCommands1[i])
+            await connection.query(sqlCommands1[i])
         }
 
-        respuesta = {
+        let respuesta = {
             consulta: "cargartabtemp",
             res: true,
             message: 'Tablas temporales creadas correctamente'
@@ -38,140 +39,136 @@ export const cargarbtemp = async (req, res) => {
 
         //B. Carga los datos de los archivos csv
         // 1. Candidatos
-        candidatos = []
-        fs.createReadStream(fdidr + '/candidatos.csv')
-        .pipe(csv.parse({ headers: true }))
-        .on('data', (data) => candidatos.push(data))
-        .on('end', () => {
-            db.query('INSERT INTO temp_candidato (id, nombres, fecha_nacimiento, partido_id, cargo_id) VALUES ( ?, ? , ? , ? , ? )', [candidatos.map(candidato => [candidato.id, candidato.nombres, candidato.fecha_nacimiento, candidato.partido_id, candidato.cargo_id])], (err, result) => {
-                if(err){
-                    console.log(err)
-                    res.status(500).send({
-                        consulta: "cargartabtemp",
-                        res: false,
-                        message: 'Ocurrio un error: ', err
-                    })
-                }
-            })
+        const contenido1 = fs.readFileSync(fdidr + '/candidatos.csv', 'utf8')
+        const filas1 = contenido1.split('\n');
+        const candidatos = filas1.map(fila => fila.split(',')
+        .map(columna => columna.trim()))
+        .filter(columnas => columnas.length > 1);
+
+        candidatos.shift()
+
+        candidatos.forEach(async columnas => {
+            columnas[0] = Number(columnas[0])
+            columnas[3] = Number(columnas[3])
+            columnas[4] = Number(columnas[4])
+            const col_fecha = columnas[2].split('/')
+            const fecha = col_fecha[2] + '-' + col_fecha[1] + '-' + col_fecha[0]
+            columnas[2] = fecha
+            const sql = `INSERT INTO temp_candidato (id, nombres, fecha_nacimiento, partido_id, cargo_id) VALUES (?,?,?,?,?)`
+            await connection.query(sql, columnas)
         })
+
 
         // 2. Cargos
-        cargos = []
-        fs.createReadStream(fdidr + '/cargos.csv')
-        .pipe(csv.parse({ headers: true }))
-        .on('data', (data) => cargos.push(data))
-        .on('end', () => {
-            db.query('INSERT INTO temp_cargo (id, cargo) VALUES ( ?, ? )', [cargos.map(cargo => [cargo.id, cargo.cargo])], (err, result) => {
-                if(err){
-                    console.log(err)
-                    res.status(500).send({
-                        consulta: "cargartabtemp",
-                        res: false,
-                        message: 'Ocurrio un error: ', err
-                    })
-                }
-            })
+        const contenido2 = fs.readFileSync(fdidr + '/cargos.csv', 'utf8')
+        const filas2 = contenido2.split('\n');
+        const cargos = filas2.map(fila => fila.split(',')
+                            .map(columna => columna.trim()))
+                            .filter(columnas => columnas.length > 1);
+        
+        cargos.shift()
+
+        cargos.forEach(async columnas => {
+            const sql = `INSERT INTO temp_cargo (id, cargo) VALUES (?,?)`
+            await connection.query(sql, columnas)
         })
+
 
         // 3. Ciudadanos
-        ciudadanos = []
-        fs.createReadStream(fdidr + '/ciudadanos.csv')
-        .pipe(csv.parse({ headers: true }))
-        .on('data', (data) => ciudadanos.push(data))
-        .on('end', () => {
-            db.query('INSERT INTO temp_ciudadano (dpi, nombre, apellido, direccion, telefono, edad, genero) VALUES ( ? , ? , ? , ? , ? , ? , ? )', [ciudadanos.map(ciudadano => [ciudadano.DPI, ciudadano.Nombre, ciudadano.Apellido, ciudadano.Direccion, ciudadano.Telefono, ciudadano.Edad, ciudadano.Genero])], (err, result) => {
-                if(err){
-                    console.log(err)
-                    res.status(500).send({
-                        consulta: "cargartabtemp",
-                        res: false,
-                        message: 'Ocurrio un error: ', err
-                    })
-                }
-            })
+        const contenido3 = fs.readFileSync(fdidr + '/ciudadanos.csv', 'utf8')
+        const filas3 = contenido3.split('\n');
+        const ciudadanos = filas3.map(fila => fila.split(',')
+                            .map(columna => columna.trim()))
+                            .filter(columnas => columnas.length > 1);
+        ciudadanos.shift()
+
+        ciudadanos.forEach(async columnas => {
+            columnas[5] = Number(columnas[5])
+            const sql = `INSERT INTO temp_ciudadano (dpi, nombre, apellido, direccion, telefono, edad, genero) VALUES (?,?,?,?,?,?,?)`
+            await connection.query(sql, columnas)
         })
+        
 
         // 4. Departamentos
-        departamentos = []
-        fs.createReadStream(fdidr + '/departamentos.csv')
-        .pipe(csv.parse({ headers: true }))
-        .on('data', (data) => departamentos.push(data))
-        .on('end', () => {
-            db.query('INSERT INTO temp_departamento (id, nombre) VALUES ( ? , ? )', [departamentos.map(departamento => [departamento.id, departamento.nombre])], (err, result) => {
-                if(err){
-                    console.log(err)
-                    res.status(500).send({
-                        consulta: "cargartabtemp",
-                        res: false,
-                        message: 'Ocurrio un error: ', err
-                    })
-                }
-            })
+        const contenido4 = fs.readFileSync(fdidr + '/departamentos.csv', 'utf8')
+        const filas4 = contenido4.split('\n');
+        const departamentos = filas4.map(fila => fila.split(',')
+                            .map(columna => columna.trim()))
+                            .filter(columnas => columnas.length > 1);
+        departamentos.shift()
+
+        departamentos.forEach(async columnas => {
+            columnas[0] = Number(columnas[0])
+            const sql = `INSERT INTO temp_departamento (id, nombre) VALUES (?,?)`
+            await connection.query(sql, columnas)
         })
+
+        
 
         // 5. Mesas
-        mesas = []
-        fs.createReadStream(fdidr + '/mesas.csv')
-        .pipe(csv.parse({ headers: true }))
-        .on('data', (data) => mesas.push(data))
-        .on('end', () => {
-            db.query('INSERT INTO temp_mesa (id_mesa, id_departamento) VALUES ( ? , ? )', [mesas.map(mesa => [mesa.id_mesa, mesa.departamento_id])], (err, result) => {
-                if(err){
-                    console.log(err)
-                    res.status(500).send({
-                        consulta: "cargartabtemp",
-                        res: false,
-                        message: 'Ocurrio un error: ', err
-                    })
-                }
-            })
+        const contenido5 = fs.readFileSync(fdidr + '/mesas.csv', 'utf8')
+        const filas5 = contenido5.split('\n');
+        const mesas = filas5.map(fila => fila.split(',')
+                            .map(columna => columna.trim()))
+                            .filter(columnas => columnas.length > 1);
+        mesas.shift()
+        mesas.forEach(async columnas => {
+            columnas[0] = Number(columnas[0])
+            columnas[1] = Number(columnas[1])
+            const sql = `INSERT INTO temp_mesa (id_mesa, id_departamento) VALUES (?,?)`
+            await connection.query(sql, columnas)
         })
+
+        
 
         // 6. Partidos
-        partidos = []
-        fs.createReadStream(fdidr + '/partidos.csv')
-        .pipe(csv.parse({ headers: true }))
-        .on('data', (data) => partidos.push(data))
-        .on('end', () => {
-            db.query('INSERT INTO temp_partido (id_partido, nombre_partido, siglas, fundacion) VALUES ( ? , ? , ? , ? )', [partidos.map(partido => [partido.id_partido, partido.nombrePartido, partido.Siglas, partido.Fundacion])], (err, result) => {
-                if(err){
-                    console.log(err)
-                    res.status(500).send({
-                        consulta: "cargartabtemp",
-                        res: false,
-                        message: 'Ocurrio un error: ', err
-                    })
-                }
-            })
+        const contenido6 = fs.readFileSync(fdidr + '/partidos.csv', 'utf8')
+        const filas6 = contenido6.split('\n');
+        const partidos = filas6.map(fila => fila.split(',')
+                            .map(columna => columna.trim()))
+                            .filter(columnas => columnas.length > 1);
+        partidos.shift()
+
+        partidos.forEach(async columnas => {
+            columnas[0] = Number(columnas[0])
+            console.log(columnas[2])
+            const col_fecha = columnas[3].split('/')
+            const fecha = col_fecha[2] + '-' + col_fecha[1] + '-' + col_fecha[0]
+            columnas[3] = fecha
+            const sql = `INSERT INTO temp_partido (id, nombre_partido, siglas, fundacion) VALUES (?,?,?,?)`
+            await connection.query(sql, columnas)
         })
+        
 
         //7. Votaciones
-        votaciones = []
-        fs.createReadStream(fdidr + '/votaciones.csv')
-        .pipe(csv.parse({ headers: true }))
-        .on('data', (data) => votaciones.push(data))
-        .on('end', () => {
-            db.query('INSERT INTO temp_votacion (id_voto, id_candidato, dpi_ciudadano, mesa_id, fecha_hora) VALUES ( ? , ? , ? , ? , ? )', [votaciones.map(votacion => [votacion.id_voto, votacion.id_candidato, votacion.dpi_ciudadano, votacion.mesa_id, votacion.fecha_hora])], (err, result) => {
-                if(err){
-                    console.log(err)
-                    res.status(500).send({
-                        consulta: "cargartabtemp",
-                        res: false,
-                        message: 'Ocurrio un error: ', err
-                    })
-                }
-            })
-        })
+        const contenido7 = fs.readFileSync(fdidr + '/votaciones.csv', 'utf8')
+        const filas7 = contenido7.split('\n');
+        const votaciones = filas7.map(fila => fila.split(',')
+                            .map(columna => columna.trim()))
+                            .filter(columnas => columnas.length > 1);
+        votaciones.shift()
+        
+        votaciones.forEach(async columnas => {
+            columnas[0] = Number(columnas[0])
+            columnas[1] = Number(columnas[1])
+            columnas[3] = Number(columnas[3])
+            const [fecha, hora] = columnas[4].split(' ');
+            const [dia, mes, anio] = fecha.split('/');
+            const [horaNum, minutos] = hora.split(':');
+            columnas[4] = `${anio}-${mes}-${dia} ${horaNum}:${minutos}`;
+            const sql = `INSERT INTO temp_votacion (id_voto, id_candidato, dpi_ciudadano, mesa_id, fecha_hora) VALUES (?,?,?,?,?)`
+            await connection.query(sql, columnas)
+        })        
 
-        salida = {
+        respuesta = {
             consulta: "cargartabtemp",
             res: true,
             message: 'Datos cargados correctamente a las tablas temporales'
         }
         salida.push(respuesta)
-
+        connection.release();
         //C. Carga los datos de las tablas temporales a las tablas del modelo
-
+        res.send(salida)
 
     }catch(e){
         console.log(e)
