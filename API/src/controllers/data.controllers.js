@@ -301,3 +301,31 @@ export const eliminarmodelo = async (req, res) => {
         })
     }
 }
+
+export const consulta1 = async (req, res) => {
+    const script = `
+    SELECT
+    presidente.nombres AS 'nombre presidente',
+    vicepresidente.nombres AS 'nombre vicepresidente',
+    partido_binomio.nombre AS 'partido'
+    FROM
+        bd_tse.CANDIDATO presidente
+    JOIN
+        bd_tse.PARTIDO partido_binomio ON partido_binomio.id = presidente.id_partido
+    JOIN
+        bd_tse.CARGO cargo_presidente ON cargo_presidente.id = presidente.id_cargo AND cargo_presidente.id = 1
+    JOIN
+        bd_tse.CANDIDATO vicepresidente ON vicepresidente.id_cargo = (SELECT id FROM bd_tse.CARGO WHERE id = 2)
+    JOIN
+        bd_tse.PARTIDO partido_vicepresidente ON partido_vicepresidente.id = vicepresidente.id_partido
+    WHERE
+        partido_binomio.id = partido_vicepresidente.id;
+    `
+    const[rows, fields] = await db.query(script)
+
+    res.status(200).send({
+        consulta: "consulta1",
+        res: true,
+        resultado: rows
+    })
+}
