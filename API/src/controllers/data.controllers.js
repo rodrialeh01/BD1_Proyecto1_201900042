@@ -302,30 +302,143 @@ export const eliminarmodelo = async (req, res) => {
     }
 }
 
-export const consulta1 = async (req, res) => {
-    const script = `
-    SELECT
-    presidente.nombres AS 'nombre presidente',
-    vicepresidente.nombres AS 'nombre vicepresidente',
-    partido_binomio.nombre AS 'partido'
-    FROM
-        bd_tse.CANDIDATO presidente
-    JOIN
-        bd_tse.PARTIDO partido_binomio ON partido_binomio.id = presidente.id_partido
-    JOIN
-        bd_tse.CARGO cargo_presidente ON cargo_presidente.id = presidente.id_cargo AND cargo_presidente.id = 1
-    JOIN
-        bd_tse.CANDIDATO vicepresidente ON vicepresidente.id_cargo = (SELECT id FROM bd_tse.CARGO WHERE id = 2)
-    JOIN
-        bd_tse.PARTIDO partido_vicepresidente ON partido_vicepresidente.id = vicepresidente.id_partido
-    WHERE
-        partido_binomio.id = partido_vicepresidente.id;
-    `
-    const[rows, fields] = await db.query(script)
+/*
+Mostrar el nombre de los candidatos a presidentes y vicepresidentes por partido (en
+este reporte/consulta se espera ver tres columnas: “nombre presidente”, “nombre
+vicepresidente”, “partido”)
+*/
 
-    res.status(200).send({
-        consulta: "consulta1",
-        res: true,
-        resultado: rows
-    })
+export const consulta1 = async (req, res) => {
+    try{
+        const script = `
+        SELECT
+            presidente.nombres AS 'nombre presidente',
+            vicepresidente.nombres AS 'nombre vicepresidente',
+            partido_binomio.nombre AS 'partido'
+        FROM
+            bd_tse.CANDIDATO presidente
+        JOIN
+            bd_tse.PARTIDO partido_binomio ON partido_binomio.id = presidente.id_partido
+        JOIN
+            bd_tse.CARGO cargo_presidente ON cargo_presidente.id = presidente.id_cargo AND cargo_presidente.id = 1
+        JOIN
+            bd_tse.CANDIDATO vicepresidente ON vicepresidente.id_cargo = 2
+        JOIN
+            bd_tse.PARTIDO partido_vicepresidente ON partido_vicepresidente.id = vicepresidente.id_partido
+        WHERE
+            partido_binomio.id = partido_vicepresidente.id;
+        `
+        const[rows, fields] = await db.query(script)
+
+        res.status(200).send({
+            consulta: "consulta1",
+            res: true,
+            resultado: rows
+        })
+    }catch(e){
+        console.log(e)
+        res.status(500).send({
+            consulta: "consulta1",
+            res: false,
+            message: 'Ocurrio un error: ', e
+        })
+    }
+}
+
+/*
+Mostrar el número de candidatos a diputados (esto incluye lista nacional, distrito
+electoral, parlamento) por cada partido.
+*/
+
+export const consulta2 = async (req, res) => {
+    try{
+        const script = `
+        SELECT
+            partido.nombre AS 'partido',
+            COUNT(*) AS 'Cantidad de diputados'
+        FROM
+            bd_tse.candidato candidato
+        JOIN
+            bd_tse.partido partido ON partido.id = candidato.id_partido
+        JOIN
+            bd_tse.cargo cargo ON cargo.id = candidato.id_cargo
+        WHERE
+            cargo.id = 3 OR cargo.id = 4 OR cargo.id = 5
+        GROUP BY
+            partido.nombre;
+        `
+        const[rows, fields] = await db.query(script)
+
+        res.status(200).send({
+            consulta: "consulta2",
+            res: true,
+            resultado: rows
+        })
+    }catch(e){
+        console.log(e)
+        res.status(500).send({
+            consulta: "consulta2",
+            res: false,
+            message: 'Ocurrio un error: ', e
+        })
+    }
+}
+
+/*
+Mostrar el nombre de los candidatos a alcalde por partido
+*/
+
+export const consulta3 = async (req, res) => {
+    try{
+        const script = `
+        SELECT
+            partido.nombre AS 'partido',
+            candidato.nombres AS 'candidato'
+        FROM
+            bd_tse.candidato candidato
+        JOIN
+            bd_tse.cargo cargo ON cargo.id = candidato.id_cargo
+        JOIN
+            bd_tse.partido partido on candidato.id_partido = partido.id
+        WHERE
+            partido.id = candidato.id_partido AND cargo.id = 6;
+        `
+        const[rows, fields] = await db.query(script)
+
+        res.status(200).send({
+            consulta: "consulta3",
+            res: true,
+            resultado:rows
+        })
+    }catch(e){
+        console.log(e)
+        res.status(500).send({
+            consulta: "consulta3",
+            res: false,
+            message: 'Ocurrio un error: ', e
+        })
+    }
+}
+
+/*
+Cantidad de candidatos por partido (presidentes, vicepresidentes, diputados,
+alcaldes).
+*/
+export const consulta4 = async (req, res) => {
+    try{
+        const script = ``
+        //const[rows, fields] = await db.query(script)
+        res.status(200).send({
+            consulta: "consulta4",
+            res: true,
+            resultado:'rows'
+        })
+    }catch(e){
+        console.log(e)
+        res.status(500).send({
+            consulta: "consulta4",
+            res: false,
+            message: 'Ocurrio un error: ', e
+        })
+    }
 }
