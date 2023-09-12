@@ -642,12 +642,12 @@ export const consulta10 = async (req, res) => {
     try{
         const script = `
         SELECT
-            HOUR(voto.fecha_hora) AS 'Hora',
+            DATE_FORMAT(voto.fecha_hora, '%H:%i') AS 'Hora',
             COUNT(DISTINCT voto.dpi_ciudadano) AS 'Cantidad'
         FROM
             bd_tse.voto voto
         GROUP BY
-            HOUR(voto.fecha_hora)
+            DATE_FORMAT(voto.fecha_hora, '%H:%i')
         ORDER BY
             COUNT(DISTINCT voto.dpi_ciudadano)
             DESC

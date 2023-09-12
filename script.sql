@@ -224,3 +224,140 @@ JOIN
     bd_tse.partido partido on candidato.id_partido = partido.id
 WHERE
     partido.id = candidato.id_partido AND cargo.id = 6;
+
+-- CONSULTA 4
+/*
+    Obtiene la cantidad de candidatos por partido
+*/
+SELECT
+    partido.nombre AS 'partido',
+    COUNT(*) AS 'cantidad de candidatos'
+FROM
+    bd_tse.candidato candidato
+JOIN
+    bd_tse.partido partido on candidato.id_partido = partido.id
+WHERE
+    partido.id = candidato.id_partido
+GROUP BY
+    partido.nombre;
+
+-- CONSULTA 5
+/*
+    Obtiene la cantidad de votos por cada departamento
+*/
+SELECT
+    departamento.nombre AS 'departamento',
+    COUNT(DISTINCT voto.dpi_ciudadano) AS 'Cantidad de Votos'
+FROM
+    bd_tse.voto voto
+JOIN
+    bd_tse.mesa mesa ON mesa.id = voto.id_mesa
+JOIN
+    bd_tse.departamento departamento ON departamento.id = mesa.id_departamento
+GROUP BY
+    departamento.nombre;
+
+-- CONSULTA 6
+/*
+    Obtiene la cantidad de votos nulos
+*/
+SELECT
+    COUNT(*) AS 'Cantidad de votos nulos'
+FROM
+    bd_tse.voto
+WHERE
+    id_candidato = -1;
+
+-- CONSULTA 7
+/*
+    Obtiene el top 10 de edades que mas votaron
+*/
+SELECT
+    ciudadano.edad AS 'Edad',
+    COUNT(DISTINCT voto.dpi_ciudadano) AS 'Cantidad de votos'
+FROM
+    bd_tse.voto voto
+JOIN
+    bd_tse.ciudadano ciudadano ON ciudadano.dpi = voto.dpi_ciudadano
+GROUP BY
+    ciudadano.edad
+ORDER BY 
+    COUNT(DISTINCT voto.dpi_ciudadano) 
+    DESC 
+    LIMIT 10;
+
+-- CONSULTA 8
+/*
+    Obtiene el top 10 de presidenciables y vicepresidenciales mas votados
+*/
+SELECT
+    presidente.nombres AS 'Presidente',
+    vicepresidente.nombres AS 'Vicepresidente',
+    COUNT(*) AS 'Cantidad de votos'
+FROM
+    bd_tse.candidato presidente
+JOIN
+    bd_tse.cargo cargo ON presidente.id_cargo = cargo.id AND presidente.id_cargo = 1
+JOIN
+    bd_tse.candidato vicepresidente ON vicepresidente.id_cargo = 2
+JOIN
+    bd_tse.voto_candidato votoc ON votoc.id_candidato = presidente.id
+WHERE
+    presidente.id_partido = vicepresidente.id_partido
+GROUP BY
+    presidente.nombres, vicepresidente.nombres
+ORDER BY
+    COUNT(*)
+    DESC
+    LIMIT 10;
+
+-- CONSULTA 9
+/*
+    Obtiene el top 5 de mesas más frecuentadas
+*/
+SELECT
+    mesa.id AS 'No. mesa',
+    departamento.nombre AS 'Departamento'
+FROM
+    bd_tse.voto voto
+JOIN
+    bd_tse.mesa mesa ON voto.id_mesa = mesa.id
+JOIN
+    bd_tse.departamento departamento ON departamento.id = mesa.id_departamento
+GROUP BY
+    mesa.id, departamento.nombre
+ORDER BY
+    COUNT(DISTINCT voto.dpi_ciudadano)
+    DESC
+    LIMIT 5;
+
+-- CONSULTA 10
+/*
+    Obtiene el top 5 de horas mas frecuentadas
+*/
+SELECT
+    DATE_FORMAT(voto.fecha_hora, '%H:%i') AS 'Hora',
+    COUNT(DISTINCT voto.dpi_ciudadano) AS 'Cantidad'
+FROM
+    bd_tse.voto voto
+GROUP BY
+    DATE_FORMAT(voto.fecha_hora, '%H:%i')
+ORDER BY
+    COUNT(DISTINCT voto.dpi_ciudadano)
+    DESC
+    LIMIT 5;
+
+-- CONSULTA 11
+/*
+    Obtiene la cantidad de votos por genero
+*/
+SELECT
+    ciudadano.genero AS 'genero',
+    COUNT(DISTINCT voto.dpi_ciudadano) AS 'Cantidad de votos'
+FROM
+    bd_tse.voto voto
+JOIN
+    bd_tse.ciudadano ciudadano ON voto.dpi_ciudadano = ciudadano.dpi
+GROUP BY
+    ciudadano.genero
+;
