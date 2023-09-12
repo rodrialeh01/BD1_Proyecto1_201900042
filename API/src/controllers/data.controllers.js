@@ -426,17 +426,127 @@ alcaldes).
 */
 export const consulta4 = async (req, res) => {
     try{
-        const script = ``
-        //const[rows, fields] = await db.query(script)
+        const script = `
+        SELECT
+            partido.nombre AS 'partido',
+            COUNT(*) AS 'cantidad de candidatos'
+        FROM
+            bd_tse.candidato candidato
+        JOIN
+            bd_tse.partido partido on candidato.id_partido = partido.id
+        WHERE
+            partido.id = candidato.id_partido
+        GROUP BY
+            partido.nombre;
+        `
+        const[rows, fields] = await db.query(script)
         res.status(200).send({
             consulta: "consulta4",
             res: true,
-            resultado:'rows'
+            resultado:rows
         })
     }catch(e){
         console.log(e)
         res.status(500).send({
             consulta: "consulta4",
+            res: false,
+            message: 'Ocurrio un error: ', e
+        })
+    }
+}
+
+/*
+Cantidad de votaciones por departamentos
+*/
+export const consulta5 = async (req, res) => {
+    try{
+        const script = `
+        SELECT
+            departamento.nombre AS 'departamento',
+            COUNT(DISTINCT voto.dpi_ciudadano) AS 'Cantidad de Votos'
+        FROM
+            bd_tse.voto voto
+        JOIN
+            bd_tse.mesa mesa ON mesa.id = voto.id_mesa
+        JOIN
+            bd_tse.departamento departamento ON departamento.id = mesa.id_departamento
+        GROUP BY
+            departamento.nombre;
+        `
+        const[rows, fields] = await db.query(script)
+        res.status(200).send({
+            consulta: "consulta5",
+            res: true,
+            resultado:rows
+        })
+    }catch(e){
+        console.log(e)
+        res.status(500).send({
+            consulta: "consulta5",
+            res: false,
+            message: 'Ocurrio un error: ', e
+        })
+    }
+}
+
+/*
+Cantidad de votos nulos.
+*/
+export const consulta6 = async (req, res) => {
+    try{
+        const script = `
+        SELECT
+            COUNT(DISTINCT voto.dpi_ciudadano) AS 'Cantidad de votos nulos'
+        FROM
+            bd_tse.voto voto
+        WHERE
+            voto.id_candidato = -1;
+        `
+        const[rows, fields] = await db.query(script)
+        res.status(200).send({
+            consulta: "consulta6",
+            res: true,
+            resultado:rows
+        })
+    }catch(e){
+        console.log(e)
+        res.status(500).send({
+            consulta: "consulta6",
+            res: false,
+            message: 'Ocurrio un error: ', e
+        })
+    }
+}
+
+/*
+Top 10 de edad de ciudadanos que realizaron su voto.
+*/
+export const consulta7 = async (req, res) => {
+    try{
+        const script = `
+        SELECT
+            ciudadano.edad AS 'Edad',
+            COUNT(DISTINCT voto.dpi_ciudadano) AS 'Cantidad de votos'
+        FROM
+            bd_tse.voto voto
+        JOIN
+            bd_tse.ciudadano ciudadano ON ciudadano.dpi = voto.dpi_ciudadano
+        GROUP BY
+            ciudadano.edad
+        ORDER BY 
+            COUNT(DISTINCT voto.dpi_ciudadano) 
+            DESC 
+            LIMIT 10;
+        `;
+        const[rows, fields] = await db.query(script)
+        res.status(200).send({
+            consulta: "consulta7",
+            res: true,
+            resultado:rows
+        })
+    }catch(e){
+        res.status(500).send({
+            consulta: "consulta7",
             res: false,
             message: 'Ocurrio un error: ', e
         })
