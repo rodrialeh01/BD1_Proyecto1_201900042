@@ -552,3 +552,156 @@ export const consulta7 = async (req, res) => {
         })
     }
 }
+
+/*
+Top 10 de candidatos más votados para presidente y vicepresidente (el voto por
+presidente incluye el vicepresidente).
+*/
+export const consulta8 = async (req, res) => {
+    try{
+        const script = `
+        SELECT
+            presidente.nombres AS 'nombre presidente',
+            vicepresidente.nombres AS 'nombre vicepresidente',
+            COUNT(DISTINCT voto.dpi_ciudadano) AS 'Cantidad de votos'
+        FROM
+            bd_tse.CANDIDATO presidente
+        JOIN
+            bd_tse.PARTIDO partido_presidente ON partido_presidente.id = presidente.id_partido
+        JOIN
+            bd_tse.CARGO cargo_presidente ON cargo_presidente.id = presidente.id_cargo AND cargo_presidente.id = 1
+        JOIN
+            bd_tse.CANDIDATO vicepresidente ON vicepresidente.id_cargo = 2
+        JOIN
+            bd_tse.PARTIDO partido_vicepresidente ON partido_vicepresidente.id = vicepresidente.id_partido
+        JOIN
+            bd_tse.voto_candidato votoc ON presidente.id = votoc.id_candidato
+        JOIN
+            bd_tse.voto voto ON votoc.id_voto = voto.id
+        WHERE
+            partido_presidente.id = partido_vicepresidente.id
+        GROUP BY
+            presidente.nombres, vicepresidente.nombres
+        ORDER BY
+            COUNT(DISTINCT voto.dpi_ciudadano)
+            DESC
+            LIMIT 10;
+        `;
+        const[rows, fields] = await db.query(script)
+        res.status(200).send({
+            consulta: "consulta8",
+            res: true,
+            resultado:rows
+        })
+    }catch(e){
+        res.status(500).send({
+            consulta: "consulta8",
+            res: false,
+            message: 'Ocurrio un error: ', e
+        })
+    }
+}
+
+/*
+Top 5 de mesas más frecuentadas (mostrar no. Mesa y departamento al que
+pertenece).
+*/
+export const consulta9 = async (req, res) => {
+    try{
+        const script = `
+        SELECT
+            mesa.id AS 'No. mesa',
+            departamento.nombre AS 'Departamento',
+            COUNT(DISTINCT voto.dpi_ciudadano) AS 'Cantidad'
+        FROM
+            bd_tse.voto voto
+        JOIN
+            bd_tse.mesa mesa ON voto.id_mesa = mesa.id
+        JOIN
+            bd_tse.departamento departamento ON departamento.id = mesa.id_departamento
+        GROUP BY
+            mesa.id, departamento.nombre
+        ORDER BY
+            COUNT(DISTINCT voto.dpi_ciudadano)
+            DESC
+            LIMIT 5;
+        `;
+        const[rows, fields] = await db.query(script)
+        res.status(200).send({
+            consulta: "consulta9",
+            res: true,
+            resultado:rows
+        })
+    }catch(e){
+        res.status(500).send({
+            consulta: "consulta9",
+            res: false,
+            message: 'Ocurrio un error: ', e
+        })
+    }
+}
+
+/*
+Mostrar el top 5 la hora más concurrida en que los ciudadanos fueron a votar
+*/
+export const consulta10 = async (req, res) => {
+    try{
+        const script = `
+        SELECT
+            HOUR(voto.fecha_hora) AS 'Hora',
+            COUNT(DISTINCT voto.dpi_ciudadano) AS 'Cantidad'
+        FROM
+            bd_tse.voto voto
+        GROUP BY
+            HOUR(voto.fecha_hora)
+        ORDER BY
+            COUNT(DISTINCT voto.dpi_ciudadano)
+            DESC
+            LIMIT 5;
+        `;
+        const[rows, fields] = await db.query(script)
+        res.status(200).send({
+            consulta: "consulta10",
+            res: true,
+            resultado:rows
+        })
+    }catch(e){
+        res.status(500).send({
+            consulta: "consulta10",
+            res: false,
+            message: 'Ocurrio un error: ', e
+        })
+    }
+}
+
+/*
+Cantidad de votos por genero (Masculino, Femenino)
+*/
+export const consulta11 = async (req, res) => {
+    try{
+        const script = `
+        SELECT
+            ciudadano.genero AS 'genero',
+            COUNT(DISTINCT voto.dpi_ciudadano) AS 'Cantidad de votos'
+        FROM
+            bd_tse.voto voto
+        JOIN
+            bd_tse.ciudadano ciudadano ON voto.dpi_ciudadano = ciudadano.dpi
+        GROUP BY
+            ciudadano.genero
+        ;
+        `;
+        const[rows, fields] = await db.query(script)
+        res.status(200).send({
+            consulta: "consulta11",
+            res: true,
+            resultado:rows
+        })
+    }catch(e){
+        res.status(500).send({
+            consulta: "consulta11",
+            res: false,
+            message: 'Ocurrio un error: ', e
+        })
+    }
+}
