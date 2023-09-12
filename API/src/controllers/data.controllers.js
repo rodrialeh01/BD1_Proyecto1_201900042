@@ -496,11 +496,11 @@ export const consulta6 = async (req, res) => {
     try{
         const script = `
         SELECT
-            COUNT(DISTINCT voto.dpi_ciudadano) AS 'Cantidad de votos nulos'
+            COUNT(*) AS 'Cantidad de votos nulos'
         FROM
-            bd_tse.voto voto
+            bd_tse.voto
         WHERE
-            voto.id_candidato = -1;
+            id_candidato = -1;
         `
         const[rows, fields] = await db.query(script)
         res.status(200).send({
@@ -561,29 +561,23 @@ export const consulta8 = async (req, res) => {
     try{
         const script = `
         SELECT
-            presidente.nombres AS 'nombre presidente',
-            vicepresidente.nombres AS 'nombre vicepresidente',
-            COUNT(DISTINCT voto.dpi_ciudadano) AS 'Cantidad de votos'
+            presidente.nombres AS 'Presidente',
+            vicepresidente.nombres AS 'Vicepresidente',
+            COUNT(*) AS 'Cantidad de votos'
         FROM
-            bd_tse.CANDIDATO presidente
+            bd_tse.candidato presidente
         JOIN
-            bd_tse.PARTIDO partido_presidente ON partido_presidente.id = presidente.id_partido
+            bd_tse.cargo cargo ON presidente.id_cargo = cargo.id AND presidente.id_cargo = 1
         JOIN
-            bd_tse.CARGO cargo_presidente ON cargo_presidente.id = presidente.id_cargo AND cargo_presidente.id = 1
+            bd_tse.candidato vicepresidente ON vicepresidente.id_cargo = 2
         JOIN
-            bd_tse.CANDIDATO vicepresidente ON vicepresidente.id_cargo = 2
-        JOIN
-            bd_tse.PARTIDO partido_vicepresidente ON partido_vicepresidente.id = vicepresidente.id_partido
-        JOIN
-            bd_tse.voto_candidato votoc ON presidente.id = votoc.id_candidato
-        JOIN
-            bd_tse.voto voto ON votoc.id_voto = voto.id
+            bd_tse.voto_candidato votoc ON votoc.id_candidato = presidente.id
         WHERE
-            partido_presidente.id = partido_vicepresidente.id
+            presidente.id_partido = vicepresidente.id_partido
         GROUP BY
             presidente.nombres, vicepresidente.nombres
         ORDER BY
-            COUNT(DISTINCT voto.dpi_ciudadano)
+            COUNT(*)
             DESC
             LIMIT 10;
         `;
