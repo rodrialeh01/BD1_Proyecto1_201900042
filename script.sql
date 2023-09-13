@@ -117,12 +117,10 @@ CREATE TABLE IF NOT EXISTS bd_tse.CANDIDATO (
 CREATE TABLE IF NOT EXISTS bd_tse.VOTO (
     id INT NOT NULL AUTO_INCREMENT,
     voto_ejercido_id INT NOT NULL,
-    id_candidato INT NOT NULL,
     dpi_ciudadano VARCHAR(13) NOT NULL,
     id_mesa INT NOT NULL,
     fecha_hora DATETIME NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (id_candidato) REFERENCES bd_tse.CANDIDATO(id),
     FOREIGN KEY (dpi_ciudadano) REFERENCES bd_tse.CIUDADANO(dpi),
     FOREIGN KEY (id_mesa) REFERENCES bd_tse.MESA(id)
 );
@@ -157,7 +155,7 @@ INSERT INTO bd_tse.MESA (id, id_departamento) SELECT id_mesa, id_departamento FR
 INSERT INTO bd_tse.CANDIDATO (id, nombres, fecha_nacimiento, id_partido, id_cargo) SELECT id, nombres, fecha_nacimiento, partido_id, cargo_id FROM temp_candidato;
 
 -- CARGA DE DATOS VOTO
-INSERT INTO bd_tse.VOTO (voto_ejercido_id,id_candidato, dpi_ciudadano, id_mesa, fecha_hora) SELECT id_voto, id_candidato, dpi_ciudadano, mesa_id, fecha_hora FROM temp_votacion;
+INSERT INTO bd_tse.VOTO (voto_ejercido_id, dpi_ciudadano, id_mesa, fecha_hora) SELECT id_voto, dpi_ciudadano, mesa_id, fecha_hora FROM temp_votacion;
 
 -- CARGA DE DATOS VOTO_CANDIDATO
 INSERT INTO bd_tse.VOTO_CANDIDATO (id_candidato, id_voto) SELECT id_candidato, id_voto FROM temp_votacion;
@@ -264,7 +262,7 @@ GROUP BY
 SELECT
     COUNT(*) AS 'Cantidad de votos nulos'
 FROM
-    bd_tse.voto
+    bd_tse.voto_candidato
 WHERE
     id_candidato = -1;
 
