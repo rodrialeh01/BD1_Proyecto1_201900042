@@ -115,12 +115,10 @@ CREATE TABLE IF NOT EXISTS bd_tse.CANDIDATO (
 CREATE TABLE IF NOT EXISTS bd_tse.VOTO (
     id INT NOT NULL AUTO_INCREMENT,
     voto_ejercido_id INT NOT NULL,
-    id_candidato INT NOT NULL,
     dpi_ciudadano VARCHAR(13) NOT NULL,
     id_mesa INT NOT NULL,
     fecha_hora DATETIME NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (id_candidato) REFERENCES bd_tse.CANDIDATO(id),
     FOREIGN KEY (dpi_ciudadano) REFERENCES bd_tse.CIUDADANO(dpi),
     FOREIGN KEY (id_mesa) REFERENCES bd_tse.MESA(id)
 );

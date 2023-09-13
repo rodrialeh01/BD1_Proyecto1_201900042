@@ -195,7 +195,7 @@ export const cargarbtemp = async (req, res) => {
         await connection.query(sql6)
 
         // 7. Voto
-        const sql7 = `INSERT INTO bd_tse.VOTO (voto_ejercido_id,id_candidato, dpi_ciudadano, id_mesa, fecha_hora) SELECT id_voto, id_candidato, dpi_ciudadano, mesa_id, fecha_hora FROM temp_votacion`
+        const sql7 = `INSERT INTO bd_tse.VOTO (voto_ejercido_id, dpi_ciudadano, id_mesa, fecha_hora) SELECT id_voto, dpi_ciudadano, mesa_id, fecha_hora FROM temp_votacion`
         await connection.query(sql7)
 
         // 8. Voto_Candidato
@@ -498,7 +498,7 @@ export const consulta6 = async (req, res) => {
         SELECT
             COUNT(*) AS 'Cantidad de votos nulos'
         FROM
-            bd_tse.voto
+            bd_tse.voto_candidato
         WHERE
             id_candidato = -1;
         `
