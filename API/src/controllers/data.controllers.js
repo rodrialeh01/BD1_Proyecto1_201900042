@@ -435,7 +435,7 @@ export const consulta4 = async (req, res) => {
         JOIN
             bd_tse.partido partido on candidato.id_partido = partido.id
         WHERE
-            partido.id = candidato.id_partido
+            partido.id = candidato.id_partido AND partido.id != -1
         GROUP BY
             partido.nombre;
         `
@@ -496,9 +496,11 @@ export const consulta6 = async (req, res) => {
     try{
         const script = `
         SELECT
-            COUNT(*) AS 'Cantidad de votos nulos'
+            COUNT(DISTINCT voto.dpi_ciudadano) AS 'Cantidad de Votos Nulos'
         FROM
-            bd_tse.voto_candidato
+            bd_tse.voto_candidato votoc
+        JOIN
+            bd_tse.voto voto on votoc.id_voto = voto.id
         WHERE
             id_candidato = -1;
         `

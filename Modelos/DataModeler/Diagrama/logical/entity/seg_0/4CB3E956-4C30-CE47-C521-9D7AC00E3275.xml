@@ -27,6 +27,18 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="voto_ejercido_id" id="EFEB537F-B2CA-6929-EC56-AD567FFD054F">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-13 22:58:03 UTC</createdTime>
+<ownerDesignName>Diagrama</ownerDesignName>
+<engineerTo>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="dpi" id="4C9E1196-A00B-23CD-6873-7DCA1A4F9BBE">
 <createdBy>rodri</createdBy>
 <createdTime>2023-09-10 12:01:10 UTC</createdTime>
@@ -40,7 +52,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>13</dataTypeSize>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>13,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="idmesa" id="E537E844-F972-1CE2-EAB2-A8A670EEAA1F">
 <createdBy>rodri</createdBy>
@@ -63,7 +75,6 @@
 <engineerTo>
 <item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT008</logicalDatatype>
@@ -75,8 +86,9 @@
 <createdBy>rodri</createdBy>
 <createdTime>2023-09-10 12:13:04 UTC</createdTime>
 <ownerDesignName>Diagrama</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

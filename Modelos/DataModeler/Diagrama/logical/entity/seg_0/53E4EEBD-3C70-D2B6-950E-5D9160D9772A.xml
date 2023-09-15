@@ -41,10 +41,10 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="idvoto" id="3804E505-5000-BF71-06D0-B5A63AF6697E">
+<Attribute name="idvoto" id="2F343A63-3014-3AD8-1EDD-36B5DAF382CD">
 <createdBy>rodri</createdBy>
-<createdTime>2023-09-10 12:13:05 UTC</createdTime>
-<generatorID>EDE1536D-0360-03CD-E551-72C87F226CCE</generatorID>
+<createdTime>2023-09-14 00:03:53 UTC</createdTime>
+<generatorID>CBA34AFD-5065-101E-CD08-8533CD855369</generatorID>
 <ownerDesignName>Diagrama</ownerDesignName>
 <engineerTo>
 <item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
@@ -61,8 +61,9 @@
 <createdBy>rodri</createdBy>
 <createdTime>2023-09-10 12:15:39 UTC</createdTime>
 <ownerDesignName>Diagrama</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="true"/>
+<item key="2F8CE378-6771-6E09-7B50-8934F66B0FBA" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

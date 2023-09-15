@@ -28,7 +28,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>13</dataTypeSize>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>13,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
@@ -55,10 +55,20 @@
 <createdTime>2023-09-10 12:18:34 UTC</createdTime>
 <generatorID>019E6DC0-27F5-1F1A-EFA4-67844B9F3272</generatorID>
 <ownerDesignName>Diagrama</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="voto_ejercido_id" id="88FBB4B4-5EC3-AFE2-6885-F4ADC446AF42">
+<createdBy>rodri</createdBy>
+<createdTime>2023-09-13 22:58:40 UTC</createdTime>
+<generatorID>EFEB537F-B2CA-6929-EC56-AD567FFD054F</generatorID>
+<ownerDesignName>Diagrama</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
